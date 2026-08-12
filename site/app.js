@@ -15,7 +15,7 @@
   };
 
   var TITLES = {
-    overview: "NeuroLab — Command Center",
+    overview: "NeuroLab — Launch Command Center",
     roadmap: "NeuroLab — Roadmap",
     deck: "NeuroLab — Project Deck",
     whitepaper: "NeuroLab — Whitepaper"

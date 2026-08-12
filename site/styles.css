@@ -13,7 +13,7 @@
   --glass-surface: linear-gradient(145deg, rgba(38, 34, 32, 0.78), rgba(17, 17, 17, 0.78));
   --shadow-soft: 0 20px 54px rgba(0, 0, 0, 0.54);
   --shadow-deep: 0 38px 100px rgba(0, 0, 0, 0.78);
-  --nav-height: 4.35rem;
+  --nav-clearance: 8.1rem;
 }
 
 * { box-sizing: border-box; }
@@ -34,7 +34,8 @@ body {
   color: var(--text);
   font-family: "Space Grotesk", "Avenir Next", "Segoe UI", Arial, sans-serif;
   background:
-    url("./assets/neural-brain-hero.webp") 50% 4rem / min(78rem, 100vw) auto no-repeat,
+    radial-gradient(58rem 30rem at 18% 12rem, rgba(4, 4, 4, 0.66), transparent 68%),
+    url("./assets/neural-brain-hero.webp") 82% 3rem / min(72rem, 118vw) auto no-repeat,
     var(--page);
   overflow-x: hidden;
 }
@@ -74,36 +75,56 @@ body.frame-active {
   background: radial-gradient(circle, rgba(123, 197, 223, 0.14), transparent 66%);
 }
 
-/* ── Master nav ─────────────────────────────────────────────── */
+/* ── Master nav: stacked glass masthead, matching the publication
+      mastheads (deck/roadmap site-header) — wordmark on top,
+      divider, then the view toggle row ────────────────────────── */
 .master-nav {
   position: fixed;
-  inset: 0 0 auto 0;
+  top: 0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 30;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  height: var(--nav-height);
-  padding: 0 clamp(0.9rem, 3vw, 2rem);
-  border-bottom: 1px solid var(--glass-border);
-  background: var(--glass-surface);
+  gap: 0.55rem;
+  width: min(calc(100% - 2rem), 55rem);
+  padding: 0.85rem 1.1rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 2.2rem;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.1), transparent 52%),
+    linear-gradient(145deg, rgba(36, 31, 31, 0.82), rgba(6, 6, 7, 0.82));
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
-  box-shadow: var(--shadow-soft);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.13),
+    var(--shadow-soft);
 }
 
-.wordmark { display: inline-flex; align-items: center; }
-.wordmark img { height: 1.65rem; width: auto; display: block; }
+.wordmark { display: inline-flex; align-items: center; flex-shrink: 0; }
+.wordmark img { height: 1.55rem; width: auto; display: block; }
 
 .nav-divider {
-  width: 1px;
-  align-self: stretch;
-  margin: 1.05rem 0;
-  background: var(--border);
+  width: min(22rem, 62%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+  flex-shrink: 0;
+}
+
+.nav-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
 }
 
 .view-switch {
   display: flex;
-  gap: 0.3rem;
+  align-items: center;
+  gap: 0.25rem;
   min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
@@ -118,10 +139,10 @@ body.frame-active {
   color: var(--text-dim);
   font: 500 0.86rem/1 "Space Grotesk", sans-serif;
   letter-spacing: 0.035em;
-  padding: 0.62rem 1.05rem;
+  padding: 0.68rem 1.15rem;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
 .view-tab:hover { color: var(--text); }
 .view-tab:focus-visible {
@@ -129,20 +150,24 @@ body.frame-active {
   outline-offset: 2px;
 }
 .view-tab[aria-current="page"] {
-  color: var(--text);
-  border-color: var(--card-border);
-  background: linear-gradient(145deg, rgba(191, 106, 69, 0.26), rgba(191, 106, 69, 0.1));
+  color: #fff;
+  background: linear-gradient(135deg, #d37b55, #a34f2e);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.22),
+    0 8px 22px rgba(191, 106, 69, 0.34);
 }
 
 .standalone-link {
-  margin-left: auto;
+  position: absolute;
+  right: 0;
+  flex-shrink: 0;
   color: var(--text-dim);
-  font: 400 0.78rem/1 "Space Mono", monospace;
+  font: 400 0.68rem/1 "Space Mono", monospace;
   text-decoration: none;
   white-space: nowrap;
-  padding: 0.55rem 0.7rem;
+  padding: 0.6rem 0.9rem;
   border: 1px solid var(--border);
-  border-radius: 0.55rem;
+  border-radius: 999px;
   transition: color 160ms ease, border-color 160ms ease;
 }
 .standalone-link:hover { color: var(--accent-light); border-color: var(--accent); }
@@ -151,7 +176,7 @@ body.frame-active {
 .stage {
   position: relative;
   z-index: 1;
-  padding-top: var(--nav-height);
+  padding-top: var(--nav-clearance);
   min-height: 100vh;
 }
 
@@ -159,7 +184,7 @@ body.frame-active {
 
 .view-frame {
   position: fixed;
-  inset: var(--nav-height) 0 0 0;
+  inset: var(--nav-clearance) 0 0 0;
   z-index: 1;
 }
 .view-frame iframe {
@@ -196,14 +221,24 @@ body.frame-active {
 
 .overview-hero h1 {
   margin: 0 0 1.1rem;
-  font-size: clamp(2.1rem, 5.4vw, 3.4rem);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.06;
+  font-size: clamp(3rem, 4.8vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
 }
 .overview-hero h1 em {
+  display: inline-block;
   font-style: normal;
-  color: var(--accent-light);
+  margin-left: 0.06em;
+  background: linear-gradient(105deg, #f2cdb8, #d98a63 52%, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 10px 34px rgba(0, 0, 0, 0.85));
+}
+
+.overview-hero h1 > span {
+  text-shadow: 0 14px 56px rgba(0, 0, 0, 0.72);
 }
 
 .overview-lead {
@@ -304,10 +339,16 @@ body.frame-active {
 
 /* ── Small screens ──────────────────────────────────────────── */
 @media (max-width: 40rem) {
-  .master-nav { gap: 0.65rem; }
-  .nav-divider, .standalone-link { display: none; }
+  .master-nav {
+    gap: 0.45rem;
+    width: calc(100% - 1.2rem);
+    padding: 0.7rem 0.6rem 0.55rem;
+    border-radius: 1.7rem;
+  }
+  .standalone-link { display: none; }
   .view-tab { padding: 0.55rem 0.8rem; font-size: 0.8rem; }
-  body { background-size: 160vw auto; }
+  .wordmark img { height: 1.25rem; }
+  body { background-size: auto, 160vw auto, auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
