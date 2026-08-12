@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The NeuroLab command center: one place to explore the public roadmap, project deck, and scientific whitepaper.">
+    <meta name="theme-color" content="#050505">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NeuroLab">
+    <meta property="og:description" content="Evidence-led systems for CNS drug discovery. Explore the roadmap, project deck, and whitepaper.">
+    <meta property="og:url" content="https://neurolab-ai.github.io/">
+    <link rel="canonical" href="https://neurolab-ai.github.io/">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <title>NeuroLab — Command Center</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#stage">Skip to content</a>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="master-nav" aria-label="NeuroLab master navigation">
+      <a class="wordmark" href="./" id="wordmark-home" aria-label="NeuroLab overview">
+        <img src="./assets/neurolab-wordmark.png" alt="NeuroLab">
+      </a>
+      <span class="nav-divider" aria-hidden="true"></span>
+      <nav class="view-switch" aria-label="Choose a publication">
+        <button type="button" class="view-tab" data-view="overview" aria-current="page">Overview</button>
+        <button type="button" class="view-tab" data-view="roadmap">Roadmap</button>
+        <button type="button" class="view-tab" data-view="deck">Project&nbsp;Deck</button>
+        <button type="button" class="view-tab" data-view="whitepaper">Whitepaper</button>
+      </nav>
+      <a class="standalone-link" id="standalone-link" href="#" target="_blank" rel="noopener" hidden>
+        Open standalone <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main id="stage" class="stage">
+      <section class="view view-overview is-active" id="view-overview" aria-label="Overview">
+        <div class="overview-shell">
+          <div class="overview-hero">
+            <h1><span>NeuroLab</span> <em>Command Center</em></h1>
+            <p class="overview-lead">
+              Evidence-led systems for CNS drug discovery. Every public NeuroLab publication,
+              one place — switch between them without leaving this page.
+            </p>
+          </div>
+          <div class="pub-grid" role="list">
+            <article class="pub-card" role="listitem">
+              <p class="pub-kicker"><span aria-hidden="true">//</span> development_sequence</p>
+              <h2>The Roadmap</h2>
+              <p>
+                Calendar targets and technical milestones across the NeuroLab research stack —
+                initiatives, dependencies, validation gates, and claim boundaries.
+              </p>
+              <div class="pub-actions">
+                <button type="button" class="pub-open" data-view="roadmap">Open Roadmap →</button>
+                <a href="https://neurolab-ai.github.io/roadmap/" target="_blank" rel="noopener">Standalone ↗</a>
+              </div>
+            </article>
+            <article class="pub-card" role="listitem">
+              <p class="pub-kicker"><span aria-hidden="true">//</span> project_presentation</p>
+              <h2>The Project Deck</h2>
+              <p>
+                The NeuroLab project presented slide by slide — platform, product previews,
+                tokenomics, and the road to release.
+              </p>
+              <div class="pub-actions">
+                <button type="button" class="pub-open" data-view="deck">Open Deck →</button>
+                <a href="https://neurolab-ai.github.io/roadmap/deck/" target="_blank" rel="noopener">Standalone ↗</a>
+              </div>
+            </article>
+            <article class="pub-card" role="listitem">
+              <p class="pub-kicker"><span aria-hidden="true">//</span> scientific_foundation</p>
+              <h2>The Whitepaper</h2>
+              <p>
+                The scientific whitepaper: the evidence architecture, knowledge systems, and
+                validation approach behind the NeuroLab platform.
+              </p>
+              <div class="pub-actions">
+                <button type="button" class="pub-open" data-view="whitepaper">Open Whitepaper →</button>
+                <a href="https://neurolab-ai.github.io/whitepaper/" target="_blank" rel="noopener">Standalone ↗</a>
+              </div>
+            </article>
+          </div>
+          <footer class="overview-footer">
+            <p>© NeuroLab. Publications remain individually addressable at their own URLs.</p>
+          </footer>
+        </div>
+      </section>
+
+      <section class="view view-frame" id="view-roadmap" aria-label="Roadmap" hidden></section>
+      <section class="view view-frame" id="view-deck" aria-label="Project deck" hidden></section>
+      <section class="view view-frame" id="view-whitepaper" aria-label="Whitepaper" hidden></section>
+
+      <p class="frame-loading" id="frame-loading" hidden aria-live="polite">
+        <span aria-hidden="true">//</span> loading_view
+      </p>
+    </main>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
