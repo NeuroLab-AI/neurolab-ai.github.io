@@ -11,7 +11,7 @@
   var TITLES = {
     overview: "NeuroLab — Launch Command Center",
     roadmap: "NeuroLab — Roadmap",
-    deck: "NeuroLab — Slide Deck",
+    deck: "NeuroLab — Project Deck",
     whitepaper: "NeuroLab — Whitepaper"
   };
 
@@ -81,10 +81,29 @@
     "  margin: clamp(0.25rem, 0.8vh, 0.65rem) auto clamp(0.4rem, 0.9vh, 0.75rem) !important;",
     "}",
     "body.command-center-deck #page-title {",
+    "  max-width: 14ch !important;",
+    "  margin-inline: auto !important;",
+    "  text-align: center !important;",
     "  font-size: clamp(4.15rem, 5.7vw, 6.15rem) !important;",
     "  line-height: 0.92 !important;",
     "}",
-    "body.command-center-deck #page-title .command-deck-name { color: var(--command-text) !important; }",
+    "body.command-center-deck #page-title .command-deck-name {",
+    "  display: block;",
+    "  color: var(--command-text) !important;",
+    "}",
+    "body.command-center-deck #page-title em {",
+    "  display: block;",
+    "  margin-top: 0.05em;",
+    "  background: linear-gradient(110deg, #e8c0ae 4%, #cf805f 48%, #a94f32 96%);",
+    "  background-clip: text;",
+    "  color: #cf805f;",
+    "  font-size: 0.72em;",
+    "  font-style: normal;",
+    "  letter-spacing: -0.06em;",
+    "  line-height: 1;",
+    "  -webkit-background-clip: text;",
+    "  -webkit-text-fill-color: transparent;",
+    "}",
     "body.command-center-deck .deck-lead {",
     "  max-width: 66rem !important;",
     "  margin-top: 0.42rem !important;",
@@ -99,14 +118,49 @@
     "  width: min(calc(100% - 2rem), 72rem) !important;",
     "  min-height: 3.35rem !important;",
     "}",
-    "body.command-center-deck .carousel-viewport { height: clamp(27rem, 31vw, 33rem) !important; }",
-    "body.command-center-deck .deck-card { width: min(58%, 58rem) !important; }",
-    "body.command-center-deck .carousel-toolbar { width: min(calc(100% - 2rem), 72rem) !important; }",
+    "body.command-center-deck .carousel-viewport { height: clamp(24.5rem, 28vw, 30rem) !important; }",
+    "body.command-center-deck .deck-card { width: min(55%, 55rem) !important; }",
+    "body.command-center-deck .command-deck-lower-rail {",
+    "  position: relative !important;",
+    "  z-index: 30 !important;",
+    "  display: grid !important;",
+    "  grid-template-rows: auto auto !important;",
+    "  justify-items: center !important;",
+    "  gap: 0.55rem !important;",
+    "  width: min(calc(100% - 2rem), 72rem) !important;",
+    "  min-height: 4.1rem !important;",
+    "  margin: 0.15rem auto 0 !important;",
+    "  padding: 0 !important;",
+    "}",
+    "body.command-center-deck .command-deck-lower-rail .carousel-toolbar {",
+    "  position: relative !important;",
+    "  inset: auto !important;",
+    "  transform: none !important;",
+    "  width: auto !important;",
+    "  min-height: 0 !important;",
+    "  margin: 0 !important;",
+    "  padding: 0 !important;",
+    "}",
+    "body.command-center-deck .command-deck-lower-rail .carousel-caption {",
+    "  position: relative !important;",
+    "  inset: auto !important;",
+    "  transform: none !important;",
+    "  margin: 0 !important;",
+    "  white-space: nowrap;",
+    "}",
+    "body.command-center-deck .command-deck-lower-rail .carousel-dots {",
+    "  position: relative !important;",
+    "  inset: auto !important;",
+    "  transform: none !important;",
+    "  display: flex !important;",
+    "  margin: 0 !important;",
+    "}",
     "body.command-center-deck .site-footer { padding-top: 0.35rem !important; padding-bottom: 0.45rem !important; }",
     "@media (max-height: 820px) and (min-width: 901px) {",
     "  body.command-center-deck #page-title { font-size: clamp(3.75rem, 5vw, 5.35rem) !important; }",
-    "  body.command-center-deck .carousel-viewport { height: clamp(23rem, calc(100svh - 17rem), 28rem) !important; }",
-    "  body.command-center-deck .deck-card { width: min(56%, 52rem) !important; }",
+    "  body.command-center-deck .carousel-viewport { height: clamp(20rem, calc(100svh - 20.5rem), 25rem) !important; }",
+    "  body.command-center-deck .deck-card { width: min(52%, 49rem) !important; }",
+    "  body.command-center-deck .command-deck-lower-rail { min-height: 3.65rem !important; gap: 0.4rem !important; }",
     "}",
     "body.command-center-roadmap :where(.showcase-section-title, .timeline-section-title) { color: var(--command-text) !important; }"
   ].join("\n");
@@ -128,8 +182,20 @@
       if (name === "deck") {
         var deckTitle = doc.getElementById("page-title");
         if (deckTitle && !deckTitle.dataset.commandCenterTitle) {
-          deckTitle.innerHTML = '<span class="command-deck-name">NeuroLab:</span> <em>Slide Deck</em>';
+          deckTitle.innerHTML = '<span class="command-deck-name">NeuroLab:</span><em>Project Deck</em>';
           deckTitle.dataset.commandCenterTitle = "true";
+        }
+        var deckExperience = doc.querySelector(".deck-experience");
+        var deckViewport = doc.querySelector(".carousel-viewport");
+        var deckToolbar = doc.querySelector(".carousel-toolbar");
+        var deckDots = doc.querySelector(".carousel-dots");
+        if (deckExperience && deckViewport && deckToolbar && deckDots && !doc.querySelector(".command-deck-lower-rail")) {
+          var deckLowerRail = doc.createElement("div");
+          deckLowerRail.className = "command-deck-lower-rail";
+          deckLowerRail.setAttribute("aria-label", "Current slide and presentation progress");
+          deckViewport.insertAdjacentElement("afterend", deckLowerRail);
+          deckLowerRail.appendChild(deckToolbar);
+          deckLowerRail.appendChild(deckDots);
         }
       }
       if (name === "whitepaper") {
