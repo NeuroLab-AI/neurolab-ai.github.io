@@ -13,7 +13,8 @@
   --glass-surface: linear-gradient(145deg, rgba(38, 34, 32, 0.78), rgba(17, 17, 17, 0.78));
   --shadow-soft: 0 20px 54px rgba(0, 0, 0, 0.54);
   --shadow-deep: 0 38px 100px rgba(0, 0, 0, 0.78);
-  --nav-clearance: 8.1rem;
+  --toggle-top: 7.6rem;
+  --nav-clearance: 11.4rem;
 }
 
 * { box-sizing: border-box; }
@@ -75,10 +76,9 @@ body.frame-active {
   background: radial-gradient(circle, rgba(123, 197, 223, 0.14), transparent 66%);
 }
 
-/* ── Master nav: stacked glass masthead, matching the publication
-      mastheads (deck/roadmap site-header) — wordmark on top,
-      divider, then the view toggle row ────────────────────────── */
-.master-nav {
+/* ── Masthead: identical language to the standalone publication
+      headers (wordmark, divider, tagline) ─────────────────────── */
+.master-head {
   position: fixed;
   top: 0.9rem;
   left: 50%;
@@ -87,29 +87,52 @@ body.frame-active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
   width: min(calc(100% - 2rem), 55rem);
-  padding: 0.85rem 1.1rem 0.72rem;
+  padding: 0.85rem 2rem 0.78rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 2.2rem;
   background:
     radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.1), transparent 52%),
-    linear-gradient(145deg, rgba(36, 31, 31, 0.82), rgba(6, 6, 7, 0.82));
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
+    linear-gradient(145deg, rgba(36, 31, 31, 0.78), rgba(6, 6, 7, 0.78));
   box-shadow:
     inset 0 1px rgba(255, 255, 255, 0.13),
-    var(--shadow-soft);
+    inset 0 -1px rgba(201, 111, 71, 0.17),
+    0 18px 55px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(24px) saturate(126%);
+  backdrop-filter: blur(24px) saturate(126%);
 }
 
 .wordmark { display: inline-flex; align-items: center; flex-shrink: 0; }
-.wordmark img { height: 1.55rem; width: auto; display: block; }
+.wordmark img {
+  display: block;
+  width: clamp(10rem, 17vw, 13rem);
+  height: auto;
+}
 
-.nav-divider {
-  width: min(22rem, 62%);
+.head-divider {
+  width: clamp(11rem, 20vw, 15rem);
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--card-border), transparent);
-  flex-shrink: 0;
+  margin: 0.55rem 0 0.5rem;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.64), transparent);
+}
+
+.master-head p {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: clamp(0.62rem, 1vw, 0.78rem);
+  letter-spacing: 0.09em;
+}
+
+/* ── View toggle: its own floating pill beneath the masthead ──── */
+.master-nav {
+  position: fixed;
+  top: var(--toggle-top);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  width: min(calc(100% - 2rem), 55rem);
 }
 
 .nav-row {
@@ -117,8 +140,19 @@ body.frame-active {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   min-width: 0;
+  max-width: 100%;
+  padding: 0.3rem 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.1), transparent 52%),
+    linear-gradient(145deg, rgba(36, 31, 31, 0.82), rgba(6, 6, 7, 0.82));
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.13),
+    var(--shadow-soft);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
 }
 
 .view-switch {
@@ -159,7 +193,8 @@ body.frame-active {
 
 .standalone-link {
   position: absolute;
-  right: 0;
+  right: -0.5rem;
+  transform: translateX(100%);
   flex-shrink: 0;
   color: var(--text-dim);
   font: 400 0.68rem/1 "Space Mono", monospace;
@@ -339,15 +374,15 @@ body.frame-active {
 
 /* ── Small screens ──────────────────────────────────────────── */
 @media (max-width: 40rem) {
-  .master-nav {
-    gap: 0.45rem;
+  .master-head {
     width: calc(100% - 1.2rem);
-    padding: 0.7rem 0.6rem 0.55rem;
+    padding: 0.7rem 1rem 0.6rem;
     border-radius: 1.7rem;
   }
+  .master-head p { font-size: 0.56rem; letter-spacing: 0.055em; text-align: center; }
+  .master-nav { width: calc(100% - 1.2rem); }
   .standalone-link { display: none; }
   .view-tab { padding: 0.55rem 0.8rem; font-size: 0.8rem; }
-  .wordmark img { height: 1.25rem; }
   body { background-size: auto, 160vw auto, auto; }
 }
 
