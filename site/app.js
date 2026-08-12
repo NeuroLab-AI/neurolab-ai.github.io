@@ -8,12 +8,6 @@
     whitepaper: "https://neurolab-ai.github.io/whitepaper/?embed=1"
   };
 
-  var STANDALONE = {
-    roadmap: "https://neurolab-ai.github.io/roadmap/",
-    deck: "https://neurolab-ai.github.io/roadmap/deck/",
-    whitepaper: "https://neurolab-ai.github.io/whitepaper/"
-  };
-
   var TITLES = {
     overview: "NeuroLab — Launch Command Center",
     roadmap: "NeuroLab — Roadmap",
@@ -23,7 +17,6 @@
 
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".view-tab"));
   var openButtons = Array.prototype.slice.call(document.querySelectorAll(".pub-open"));
-  var standaloneLink = document.getElementById("standalone-link");
   var loadingIndicator = document.getElementById("frame-loading");
   var mounted = {};
   var current = null;
@@ -75,13 +68,6 @@
 
     document.body.classList.toggle("frame-active", Boolean(VIEWS[name]));
     document.title = TITLES[name];
-
-    if (STANDALONE[name]) {
-      standaloneLink.href = STANDALONE[name];
-      standaloneLink.hidden = false;
-    } else {
-      standaloneLink.hidden = true;
-    }
 
     if (push) {
       var url = name === "overview" ? "./" : "?view=" + name;
