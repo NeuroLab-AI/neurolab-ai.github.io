@@ -30,15 +30,30 @@ html {
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   min-height: 100vh;
   color: var(--text);
   font-family: "Space Grotesk", "Avenir Next", "Segoe UI", Arial, sans-serif;
-  background:
-    radial-gradient(58rem 30rem at 18% 12rem, rgba(4, 4, 4, 0.66), transparent 68%),
-    url("./assets/neural-brain-hero.webp") 82% 3rem / min(72rem, 118vw) auto no-repeat,
-    var(--page);
+  background: var(--page);
   overflow-x: hidden;
+}
+
+/* Shared publication backdrop: centered, dimmed brain image (same
+   treatment as the roadmap page, for text contrast). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+  background: url("./assets/neural-brain-hero.webp") 50% 6.5rem / min(78rem, 102vw) auto no-repeat;
+  filter: brightness(0.72) contrast(1.14) saturate(0.7);
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 5rem, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 5rem, #000 72%, transparent 100%);
 }
 
 body.frame-active {
@@ -383,7 +398,7 @@ body.frame-active {
   .master-nav { width: calc(100% - 1.2rem); }
   .standalone-link { display: none; }
   .view-tab { padding: 0.55rem 0.8rem; font-size: 0.8rem; }
-  body { background-size: auto, 160vw auto, auto; }
+  body::before { background-size: 160vw auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
