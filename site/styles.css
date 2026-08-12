@@ -40,20 +40,51 @@ body {
   overflow-x: hidden;
 }
 
-/* Shared publication backdrop: centered, dimmed brain image (same
-   treatment as the roadmap page, for text contrast). */
-body::before {
+/* Backdrop: the whitepaper page's treatment, verbatim — large brain
+   offset left under layered dark gradients, plus its noise/grid film. */
+body::before,
+body::after {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
   pointer-events: none;
-  opacity: 0.4;
-  background: url("./assets/neural-brain-hero.webp") 50% 6.5rem / min(78rem, 102vw) auto no-repeat;
-  filter: brightness(0.72) contrast(1.14) saturate(0.7);
-  mix-blend-mode: screen;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 5rem, #000 72%, transparent 100%);
-  mask-image: linear-gradient(180deg, transparent 0, #000 5rem, #000 72%, transparent 100%);
+}
+
+body::before {
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 10, 10, 0.8) 0%,
+      rgba(10, 10, 10, 0.48) 34%,
+      rgba(10, 10, 10, 0.62) 54%,
+      rgba(10, 10, 10, 0.9) 68%,
+      rgba(10, 10, 10, 0.99) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.7) 0%,
+      rgba(10, 10, 10, 0.08) 30%,
+      rgba(10, 10, 10, 0.24) 68%,
+      rgba(10, 10, 10, 0.94) 100%
+    ),
+    radial-gradient(
+      circle at 38% 44%,
+      rgba(191, 106, 69, 0.16) 0%,
+      rgba(105, 50, 34, 0.07) 28%,
+      transparent 55%
+    ),
+    url("./assets/neural-brain-hero.webp") calc(50% - 23vw) center / cover no-repeat;
+}
+
+body::after {
+  z-index: -1;
+  opacity: 0.76;
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"),
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: auto, 52px 52px, 52px 52px;
 }
 
 body.frame-active {
@@ -71,25 +102,6 @@ body.frame-active {
   color: var(--text);
 }
 .skip-link:focus { left: 0.75rem; top: 0.75rem; }
-
-.ambient {
-  position: fixed;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.5;
-}
-.ambient-one {
-  width: 44rem; height: 44rem;
-  left: -14rem; top: -16rem;
-  background: radial-gradient(circle, rgba(191, 106, 69, 0.28), transparent 66%);
-}
-.ambient-two {
-  width: 38rem; height: 38rem;
-  right: -12rem; bottom: -14rem;
-  background: radial-gradient(circle, rgba(123, 197, 223, 0.14), transparent 66%);
-}
 
 /* ── Masthead: identical language to the standalone publication
       headers (wordmark, divider, tagline) ─────────────────────── */
@@ -269,34 +281,24 @@ body.frame-active {
 
 .overview-hero { max-width: 44rem; }
 
+/* Hero typography: the whitepaper page's h1/description format. */
 .overview-hero h1 {
-  margin: 0 0 1.1rem;
-  font-size: clamp(3rem, 4.8vw, 5rem);
-  font-weight: 300;
+  max-width: 12ch;
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(3.3rem, 8vw, 7.1rem);
+  font-weight: 600;
   letter-spacing: -0.065em;
-  line-height: 0.98;
+  line-height: 0.92;
 }
-.overview-hero h1 em {
-  display: inline-block;
-  font-style: normal;
-  margin-left: 0.06em;
-  background: linear-gradient(105deg, #f2cdb8, #d98a63 52%, var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 10px 34px rgba(0, 0, 0, 0.85));
-}
-
-.overview-hero h1 > span {
-  text-shadow: 0 14px 56px rgba(0, 0, 0, 0.72);
-}
+.overview-hero h1 em { font-style: normal; }
 
 .overview-lead {
-  margin: 0;
-  color: var(--text-dim);
-  font-size: clamp(1rem, 1.9vw, 1.13rem);
-  line-height: 1.65;
-  max-width: 38rem;
+  max-width: 42rem;
+  margin: 2rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.6;
 }
 
 .pub-grid {
@@ -398,7 +400,29 @@ body.frame-active {
   .master-nav { width: calc(100% - 1.2rem); }
   .standalone-link { display: none; }
   .view-tab { padding: 0.55rem 0.8rem; font-size: 0.8rem; }
-  body::before { background-size: 160vw auto; }
+  body::before {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.58) 0%,
+        rgba(10, 10, 10, 0.28) 24%,
+        rgba(10, 10, 10, 0.82) 62%,
+        rgba(10, 10, 10, 0.99) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(10, 10, 10, 0.82) 0%,
+        rgba(10, 10, 10, 0.38) 58%,
+        rgba(10, 10, 10, 0.64) 100%
+      ),
+      radial-gradient(
+        circle at 72% 20%,
+        rgba(191, 106, 69, 0.14) 0%,
+        transparent 48%
+      ),
+      url("./assets/neural-brain-hero.webp") 80% top / auto 68vh no-repeat;
+  }
+  body::after { opacity: 0.62; }
 }
 
 @media (prefers-reduced-motion: reduce) {
