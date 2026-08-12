@@ -53,9 +53,26 @@
     "body.command-center-whitepaper .status-row { display: none !important; }",
     "body.command-center-whitepaper .page-shell { padding-top: clamp(0.75rem, 1.8vh, 1.35rem) !important; }",
     "body.command-center-whitepaper #whitepaper-title {",
-    "  max-width: 11ch !important;",
-    "  font-size: clamp(4.4rem, 7.6vw, 7.35rem) !important;",
-    "  line-height: 0.91 !important;",
+    "  max-width: 14ch !important;",
+    "  font-size: clamp(4.15rem, 5.7vw, 6.15rem) !important;",
+    "  line-height: 0.92 !important;",
+    "}",
+    "body.command-center-whitepaper #whitepaper-title .command-whitepaper-name {",
+    "  display: block;",
+    "  color: var(--command-text) !important;",
+    "}",
+    "body.command-center-whitepaper #whitepaper-title em {",
+    "  display: block;",
+    "  margin-top: 0.05em;",
+    "  background: linear-gradient(110deg, #e8c0ae 4%, #cf805f 48%, #a94f32 96%);",
+    "  background-clip: text;",
+    "  color: #cf805f;",
+    "  font-size: 0.72em;",
+    "  font-style: normal;",
+    "  letter-spacing: -0.06em;",
+    "  line-height: 1;",
+    "  -webkit-background-clip: text;",
+    "  -webkit-text-fill-color: transparent;",
     "}",
     "body.command-center-whitepaper .button-secondary { border-color: var(--command-border) !important; color: var(--command-text) !important; }",
     "body.command-center-deck main { width: min(100% - 1rem, 108rem) !important; }",
@@ -113,6 +130,13 @@
         if (deckTitle && !deckTitle.dataset.commandCenterTitle) {
           deckTitle.innerHTML = '<span class="command-deck-name">NeuroLab:</span> <em>Slide Deck</em>';
           deckTitle.dataset.commandCenterTitle = "true";
+        }
+      }
+      if (name === "whitepaper") {
+        var whitepaperTitle = doc.getElementById("whitepaper-title");
+        if (whitepaperTitle && !whitepaperTitle.dataset.commandCenterTitle) {
+          whitepaperTitle.innerHTML = '<span class="command-whitepaper-name">NeuroLab:</span> <em>The Whitepaper</em>';
+          whitepaperTitle.dataset.commandCenterTitle = "true";
         }
       }
       if (!doc.getElementById("command-center-normalization")) {
