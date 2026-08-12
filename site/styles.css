@@ -103,6 +103,20 @@ body.frame-active {
 }
 .skip-link:focus { left: 0.75rem; top: 0.75rem; }
 
+/* Ambient orbs: the whitepaper page's spec, verbatim. */
+.ambient {
+  position: fixed;
+  z-index: 0;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 50%;
+  opacity: 0.22;
+  filter: blur(120px);
+  pointer-events: none;
+}
+.ambient-one { top: -15rem; left: 18%; background: #6d3626; }
+.ambient-two { bottom: -19rem; left: -12rem; background: #592e22; }
+
 /* ── Masthead: identical language to the standalone publication
       headers (wordmark, divider, tagline) ─────────────────────── */
 .master-head {
