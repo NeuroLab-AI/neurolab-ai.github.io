@@ -162,6 +162,56 @@
     "  body.command-center-deck .deck-card { width: min(52%, 49rem) !important; }",
     "  body.command-center-deck .command-deck-lower-rail { min-height: 3.65rem !important; gap: 0.4rem !important; }",
     "}",
+    "@media (max-width: 900px) {",
+    "  body.command-center-embed { min-width: 0 !important; overflow-x: hidden !important; }",
+    "  body.command-center-embed :where(button:not(.carousel-dot), .button, .button-secondary, .preview-download, .open-presentation, .expand-control, .carousel-arrow, .showcase-expand, .showcase-arrow, .legend-item, .mode-toggle button, .reset-filters) { min-height: 2.75rem; }",
+    "  body.command-center-whitepaper .page-shell {",
+    "    width: min(calc(100% - 1.5rem), 42rem) !important;",
+    "    gap: clamp(1.35rem, 4vw, 2rem) !important;",
+    "    padding-top: clamp(0.45rem, 1.8vh, 0.9rem) !important;",
+    "  }",
+    "  body.command-center-whitepaper #whitepaper-title { font-size: clamp(3.15rem, 11vw, 5rem) !important; }",
+    "  body.command-center-whitepaper .description { margin-top: 0.9rem !important; font-size: clamp(0.98rem, 3vw, 1.12rem) !important; }",
+    "  body.command-center-whitepaper .actions { margin-top: 1.25rem !important; }",
+    "  body.command-center-whitepaper .release-data { margin-top: 1.4rem !important; }",
+    "  body.command-center-whitepaper .document-preview { width: min(100%, 29rem) !important; height: auto !important; min-height: 0 !important; margin-inline: auto !important; }",
+    "  body.command-center-deck main { width: min(calc(100% - 1rem), 54rem) !important; }",
+    "  body.command-center-deck .deck-intro { margin: 0.15rem auto 0.35rem !important; }",
+    "  body.command-center-deck #page-title { font-size: clamp(3.15rem, 10vw, 5rem) !important; }",
+    "  body.command-center-deck .deck-lead { max-width: 45rem !important; margin-top: 0.3rem !important; font-size: clamp(0.92rem, 2.7vw, 1.08rem) !important; }",
+    "  body.command-center-deck .deck-experience { width: 100% !important; row-gap: 0.3rem !important; }",
+    "  body.command-center-deck .carousel-meta { width: min(calc(100% - 1rem), 48rem) !important; min-height: 3rem !important; }",
+    "  body.command-center-deck .carousel-viewport { height: clamp(18rem, 55vw, 25rem) !important; }",
+    "  body.command-center-deck .deck-card { width: min(72%, 40rem) !important; }",
+    "  body.command-center-deck .command-deck-lower-rail { width: min(calc(100% - 1rem), 48rem) !important; min-height: 3.65rem !important; gap: 0.42rem !important; }",
+    "  body.command-center-deck .command-deck-lower-rail .carousel-caption { max-width: calc(100vw - 2rem) !important; overflow: hidden; text-overflow: ellipsis; }",
+    "  body.command-center-roadmap :where(.timeline-controls, .legend-shell, .filter-shell) { max-width: calc(100% - 1rem) !important; }",
+    "  body.command-center-roadmap :where(.initiative-modal, .modal-panel) { max-width: calc(100% - 1rem) !important; max-height: calc(100svh - 1rem) !important; }",
+    "}",
+    "@media (max-width: 560px) {",
+    "  body.command-center-whitepaper .page-shell { width: calc(100% - 1rem) !important; gap: 1.15rem !important; }",
+    "  body.command-center-whitepaper #whitepaper-title { font-size: clamp(2.75rem, 14vw, 4rem) !important; }",
+    "  body.command-center-whitepaper :where(.preview-toolbar, .preview-tools) { flex-wrap: wrap !important; }",
+    "  body.command-center-whitepaper .actions :where(a, button) { min-height: 2.9rem !important; }",
+    "  body.command-center-deck main { width: calc(100% - 0.65rem) !important; }",
+    "  body.command-center-deck #page-title { font-size: clamp(2.7rem, 14vw, 4rem) !important; }",
+    "  body.command-center-deck .deck-lead { padding-inline: 0.5rem !important; font-size: 0.9rem !important; line-height: 1.42 !important; }",
+    "  body.command-center-deck .carousel-meta { width: calc(100% - 0.5rem) !important; min-height: 2.85rem !important; }",
+    "  body.command-center-deck .carousel-viewport { height: clamp(15rem, 66vw, 20rem) !important; }",
+    "  body.command-center-deck .deck-card { width: min(82%, 32rem) !important; }",
+    "  body.command-center-deck .command-deck-lower-rail { width: calc(100% - 0.5rem) !important; min-height: 3.35rem !important; gap: 0.35rem !important; }",
+    "  body.command-center-deck .command-deck-lower-rail .carousel-caption { max-width: calc(100vw - 1.25rem) !important; font-size: 0.82rem !important; }",
+    "  body.command-center-deck .command-deck-lower-rail .carousel-dots { max-width: calc(100vw - 1.25rem) !important; gap: 0.28rem !important; }",
+    "}",
+    "@media (max-height: 560px) and (min-width: 641px) {",
+    "  body.command-center-whitepaper .page-shell { gap: 1rem !important; padding-top: 0.35rem !important; }",
+    "  body.command-center-whitepaper #whitepaper-title { font-size: clamp(2.8rem, 7vw, 4rem) !important; }",
+    "  body.command-center-deck .deck-intro { margin-top: 0 !important; }",
+    "  body.command-center-deck #page-title { font-size: clamp(2.65rem, 7vw, 4rem) !important; }",
+    "  body.command-center-deck .deck-lead { margin-top: 0.2rem !important; font-size: 0.88rem !important; }",
+    "  body.command-center-deck .carousel-viewport { height: min(18rem, calc(100svh - 13.5rem)) !important; }",
+    "  body.command-center-deck .command-deck-lower-rail { min-height: 3.1rem !important; }",
+    "}",
     "body.command-center-roadmap :where(.showcase-section-title, .timeline-section-title) { color: var(--command-text) !important; }"
   ].join("\n");
 
@@ -234,6 +284,17 @@
     mounted[name] = true;
   }
 
+  function keepActiveTabVisible(tab) {
+    var scroller = tab && tab.closest(".view-switch");
+    if (!scroller || scroller.scrollWidth <= scroller.clientWidth) { return; }
+    var target = tab.offsetLeft - ((scroller.clientWidth - tab.offsetWidth) / 2);
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    scroller.scrollTo({
+      left: Math.max(0, target),
+      behavior: reducedMotion ? "auto" : "smooth"
+    });
+  }
+
   function setView(name, push) {
     name = normalize(name);
     if (name === current) { return; }
@@ -247,13 +308,19 @@
     if (VIEWS[name]) { mountFrame(name); }
     else { loadingIndicator.hidden = true; }
 
+    var activeTab = null;
     tabs.forEach(function (tab) {
       if (tab.dataset.view === name) {
         tab.setAttribute("aria-current", "page");
+        activeTab = tab;
       } else {
         tab.removeAttribute("aria-current");
       }
     });
+
+    if (activeTab) {
+      window.requestAnimationFrame(function () { keepActiveTabVisible(activeTab); });
+    }
 
     document.body.classList.toggle("frame-active", Boolean(VIEWS[name]));
     document.title = TITLES[name];
