@@ -29,6 +29,11 @@
     "  --command-muted: rgba(255, 255, 255, 0.72);",
     "}",
     "html[data-command-center='true'], html[data-command-center='true'] body { background: transparent !important; }",
+    // Match the shell's scrollbar palette without changing each view's geometry.
+    "html[data-command-center='true'] { scrollbar-color: #713b2b #050505; }",
+    "html[data-command-center='true']::-webkit-scrollbar-track { background: #050505; }",
+    "html[data-command-center='true']::-webkit-scrollbar-thumb { background: #713b2b; }",
+    "html[data-command-center='true']::-webkit-scrollbar-thumb:hover { background: #bf6a45; }",
     "html[data-command-center='true'] body::before, html[data-command-center='true'] body::after { background: none !important; opacity: 0 !important; }",
     "body.command-center-embed :where(h1, h2) { text-wrap: balance; }",
     "body.command-center-embed h1 { font-weight: 500; text-shadow: 0 16px 56px rgba(0, 0, 0, 0.72); }",
