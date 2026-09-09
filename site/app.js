@@ -75,29 +75,44 @@
     "  -webkit-text-fill-color: transparent;",
     "}",
     "body.command-center-whitepaper .button-secondary { border-color: var(--command-border) !important; color: var(--command-text) !important; }",
-    "body.command-center-deck main { width: min(100% - 1rem, 108rem) !important; }",
+    "body.command-center-deck main {",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  width: min(100% - 1rem, 108rem) !important;",
+    "  height: calc(100svh - 0.5rem);",
+    "  min-height: 26rem;",
+    "  padding-block: 0.2rem 0.35rem;",
+    "}",
     "body.command-center-deck .deck-intro {",
+    "  flex: none;",
     "  max-width: 78rem !important;",
-    "  margin: clamp(0.25rem, 0.8vh, 0.65rem) auto clamp(0.4rem, 0.9vh, 0.75rem) !important;",
+    "  margin: 0.15rem auto 0.5rem !important;",
     "}",
     "body.command-center-deck #page-title {",
-    "  max-width: 14ch !important;",
+    "  display: flex;",
+    "  flex-wrap: wrap;",
+    "  align-items: baseline;",
+    "  justify-content: center;",
+    "  column-gap: 0.22em;",
+    "  max-width: none !important;",
     "  margin-inline: auto !important;",
     "  text-align: center !important;",
-    "  font-size: clamp(4.15rem, 5.7vw, 6.15rem) !important;",
-    "  line-height: 0.92 !important;",
+    "  font-size: clamp(2.25rem, 3.8vw, 3.8rem) !important;",
+    "  line-height: 1.03 !important;",
     "}",
     "body.command-center-deck #page-title .command-deck-name {",
-    "  display: block;",
+    "  display: inline;",
+    "  white-space: nowrap;",
     "  color: var(--command-text) !important;",
     "}",
     "body.command-center-deck #page-title em {",
-    "  display: block;",
-    "  margin-top: 0.05em;",
+    "  display: inline;",
+    "  margin: 0;",
+    "  white-space: nowrap;",
     "  background: linear-gradient(110deg, #e8c0ae 4%, #cf805f 48%, #a94f32 96%);",
     "  background-clip: text;",
     "  color: #cf805f;",
-    "  font-size: 0.72em;",
+    "  font-size: 1em;",
     "  font-style: normal;",
     "  letter-spacing: -0.06em;",
     "  line-height: 1;",
@@ -110,6 +125,9 @@
     "  font-size: clamp(1rem, 1.2vw, 1.15rem) !important;",
     "}",
     "body.command-center-deck .deck-experience {",
+    "  flex: 1;",
+    "  min-height: 0;",
+    "  grid-template-rows: auto minmax(0, 1fr) auto !important;",
     "  width: min(100%, 106rem) !important;",
     "  row-gap: 0.45rem !important;",
     "  margin-bottom: 0.15rem !important;",
@@ -117,13 +135,16 @@
     "body.command-center-deck .carousel-meta {",
     "  width: min(calc(100% - 2rem), 62rem) !important;",
     "  min-height: 3.35rem !important;",
+    "  margin-bottom: 0 !important;",
     "}",
-    "body.command-center-deck .carousel-viewport { height: clamp(24.5rem, 28vw, 30rem) !important; }",
-    "body.command-center-deck .deck-card { width: min(55%, 55rem) !important; }",
+    "body.command-center-deck .carousel-viewport { height: auto !important; min-height: 0; container-type: size; }",
+    // Leave room for the perspective enlargement and the slide's backing edge.
+    "body.command-center-deck .deck-card { width: min(58.85%, 58.85rem, calc(165.85cqh - 3.317rem)) !important; }",
     "body.command-center-deck .command-deck-lower-rail {",
     "  position: relative !important;",
     "  z-index: 30 !important;",
     "  display: grid !important;",
+    "  grid-area: caption !important;",
     "  grid-template-columns: minmax(0, 1fr) !important;",
     "  grid-template-rows: auto auto !important;",
     "  grid-template-areas: none !important;",
@@ -131,7 +152,7 @@
     "  gap: 0.55rem !important;",
     "  width: min(calc(100% - 2rem), 62rem) !important;",
     "  min-height: 4.1rem !important;",
-    "  margin: 0.75rem auto 0 !important;",
+    "  margin: 0 auto !important;",
     "  padding: 0 !important;",
     "}",
     "body.command-center-deck .command-deck-lower-rail .carousel-toolbar {",
@@ -166,10 +187,19 @@
     "  margin: 0 !important;",
     "}",
     "body.command-center-deck .site-footer { padding-top: 0.35rem !important; padding-bottom: 0.45rem !important; }",
+    "@media (min-width: 901px) {",
+    // Keep the viewport width steady when the progress dots extend below the fold.
+    "  html[data-command-deck-fit-bound] { scrollbar-gutter: stable; }",
+    "  body.command-center-deck { --command-deck-lift: clamp(1rem, calc(5svh + 0.25rem), 2.5rem); }",
+    "  body.command-center-deck :is(.carousel-viewport, .command-deck-lower-rail) { top: calc(-1 * var(--command-deck-lift)); }",
+    "  body.command-center-deck[data-command-deck-fit] .deck-card { width: var(--command-deck-fitted-width) !important; }",
+    "  body.command-center-deck[data-command-deck-fit] .carousel-viewport { top: calc(var(--command-deck-center-shift) - var(--command-deck-lift)); }",
+    "  body.command-center-deck[data-command-deck-fit] .command-deck-lower-rail { top: calc(var(--command-deck-caption-shift) - var(--command-deck-lift)); }",
+    "  body.command-center-deck.command-deck-measuring .deck-card { transition: none !important; }",
+    "}",
     "@media (max-height: 820px) and (min-width: 901px) {",
-    "  body.command-center-deck #page-title { font-size: clamp(3.75rem, 5vw, 5.35rem) !important; }",
-    "  body.command-center-deck .carousel-viewport { height: clamp(20rem, calc(100svh - 20.5rem), 25rem) !important; }",
-    "  body.command-center-deck .deck-card { width: min(52%, 49rem) !important; }",
+    "  body.command-center-deck #page-title { font-size: clamp(2rem, 3.4vw, 3.4rem) !important; }",
+    "  body.command-center-deck .deck-card { width: min(55.64%, 52.43rem, calc(165.85cqh - 3.317rem)) !important; }",
     "  body.command-center-deck .command-deck-lower-rail { min-height: 3.65rem !important; gap: 0.4rem !important; }",
     "}",
     "@media (max-width: 900px) {",
@@ -185,14 +215,14 @@
     "  body.command-center-whitepaper .actions { margin-top: 1.25rem !important; }",
     "  body.command-center-whitepaper .release-data { margin-top: 1.4rem !important; }",
     "  body.command-center-whitepaper .document-preview { width: min(100%, 29rem) !important; height: auto !important; min-height: 0 !important; margin-inline: auto !important; }",
-    "  body.command-center-deck main { width: min(calc(100% - 1rem), 54rem) !important; }",
+    "  body.command-center-deck main { width: min(calc(100% - 1rem), 54rem) !important; height: auto; min-height: 0; }",
     "  body.command-center-deck .deck-intro { margin: 0.15rem auto 0.35rem !important; }",
-    "  body.command-center-deck #page-title { font-size: clamp(3.15rem, 10vw, 5rem) !important; }",
+    "  body.command-center-deck #page-title { font-size: clamp(1.9rem, 5vw, 2.8rem) !important; }",
     "  body.command-center-deck .deck-lead { max-width: 45rem !important; margin-top: 0.3rem !important; font-size: clamp(0.92rem, 2.7vw, 1.08rem) !important; }",
-    "  body.command-center-deck .deck-experience { width: 100% !important; row-gap: 0.3rem !important; }",
+    "  body.command-center-deck .deck-experience { flex: none; width: 100% !important; row-gap: 0.3rem !important; }",
     "  body.command-center-deck .carousel-meta { width: min(calc(100% - 1rem), 48rem) !important; min-height: 3rem !important; }",
     "  body.command-center-deck .carousel-viewport { height: clamp(18rem, 55vw, 25rem) !important; }",
-    "  body.command-center-deck .deck-card { width: min(72%, 40rem) !important; }",
+    "  body.command-center-deck .deck-card { width: min(72%, 40rem, calc(155cqh - 3.1rem)) !important; }",
     "  body.command-center-deck .command-deck-lower-rail { width: min(calc(100% - 1rem), 48rem) !important; min-height: 3.65rem !important; gap: 0.42rem !important; }",
     "  body.command-center-deck .command-deck-lower-rail .carousel-caption { max-width: calc(100vw - 2rem) !important; overflow: hidden; text-overflow: ellipsis; }",
     "  body.command-center-roadmap :where(.timeline-controls, .legend-shell, .filter-shell) { max-width: calc(100% - 1rem) !important; }",
@@ -204,11 +234,11 @@
     "  body.command-center-whitepaper :where(.preview-toolbar, .preview-tools) { flex-wrap: wrap !important; }",
     "  body.command-center-whitepaper .actions :where(a, button) { min-height: 2.9rem !important; }",
     "  body.command-center-deck main { width: calc(100% - 0.65rem) !important; }",
-    "  body.command-center-deck #page-title { font-size: clamp(2.7rem, 14vw, 4rem) !important; }",
+    "  body.command-center-deck #page-title { font-size: clamp(1.65rem, 6vw, 2rem) !important; }",
     "  body.command-center-deck .deck-lead { padding-inline: 0.5rem !important; font-size: 0.9rem !important; line-height: 1.42 !important; }",
     "  body.command-center-deck .carousel-meta { width: calc(100% - 0.5rem) !important; min-height: 2.85rem !important; }",
     "  body.command-center-deck .carousel-viewport { height: clamp(15rem, 66vw, 20rem) !important; }",
-    "  body.command-center-deck .deck-card { width: min(82%, 32rem) !important; }",
+    "  body.command-center-deck .deck-card { width: min(82%, 32rem, calc(155cqh - 3.1rem)) !important; }",
     "  body.command-center-deck .command-deck-lower-rail { width: calc(100% - 0.5rem) !important; min-height: 3.35rem !important; gap: 0.35rem !important; }",
     "  body.command-center-deck .command-deck-lower-rail .carousel-caption { max-width: calc(100vw - 1.25rem) !important; font-size: 0.82rem !important; }",
     "  body.command-center-deck .command-deck-lower-rail .carousel-dots { max-width: calc(100vw - 1.25rem) !important; gap: 0.28rem !important; }",
@@ -217,9 +247,8 @@
     "  body.command-center-whitepaper .page-shell { gap: 1rem !important; padding-top: 0.35rem !important; }",
     "  body.command-center-whitepaper #whitepaper-title { font-size: clamp(2.8rem, 7vw, 4rem) !important; }",
     "  body.command-center-deck .deck-intro { margin-top: 0 !important; }",
-    "  body.command-center-deck #page-title { font-size: clamp(2.65rem, 7vw, 4rem) !important; }",
+    "  body.command-center-deck #page-title { font-size: clamp(1.9rem, 3.2vw, 2.6rem) !important; }",
     "  body.command-center-deck .deck-lead { margin-top: 0.2rem !important; font-size: 0.88rem !important; }",
-    "  body.command-center-deck .carousel-viewport { height: min(18rem, calc(100svh - 13.5rem)) !important; }",
     "  body.command-center-deck .command-deck-lower-rail { min-height: 3.1rem !important; }",
     "}",
     "body.command-center-roadmap :where(.showcase-section-title, .timeline-section-title) { color: var(--command-text) !important; }"
@@ -233,6 +262,72 @@
     return document.getElementById("view-" + name);
   }
 
+  function fitEmbeddedDeck(frame) {
+    var doc = frame.contentDocument;
+    var view = frame.contentWindow;
+    var viewport = doc.querySelector(".carousel-viewport");
+    if (!viewport || doc.documentElement.dataset.commandDeckFitBound) { return; }
+    doc.documentElement.dataset.commandDeckFitBound = "true";
+    var pending = 0;
+
+    function updateFit() {
+      pending = 0;
+      var body = doc.body;
+      try {
+        if (view.innerWidth <= 900) { return; }
+        var card = doc.querySelector('.deck-card[data-position="active"]');
+        var caption = doc.querySelector(".carousel-caption");
+        var rail = doc.querySelector(".command-deck-lower-rail");
+        if (!card || !caption || !rail) { return; }
+
+        // Measure the existing composition at rest before growing from its top edge.
+        var cardBox = card.getBoundingClientRect();
+        var railBox = rail.getBoundingClientRect();
+        var baseWidth = parseFloat(view.getComputedStyle(card).width);
+        var projectedScale = cardBox.width / baseWidth;
+        if (!Number.isFinite(projectedScale) || projectedScale <= 0 || baseWidth < 10) { return; }
+
+        var captionGap = 24; // Includes clearance for the decorative backing edge.
+        var bottomClearance = 12;
+        var top = cardBox.top + view.scrollY;
+        var availableHeight = doc.documentElement.clientHeight - top
+          - caption.getBoundingClientRect().height - captionGap - bottomClearance;
+        var fittedWidth = Math.min(
+          availableHeight * 16 / 9 / projectedScale,
+          viewport.clientWidth * 0.8 / projectedScale
+        );
+        if (fittedWidth <= baseWidth) { return; }
+
+        var fittedHeight = fittedWidth * projectedScale * 9 / 16;
+        // Moving the perspective container avoids changing the slide's top edge.
+        body.style.setProperty("--command-deck-fitted-width", fittedWidth + "px");
+        body.style.setProperty("--command-deck-center-shift", ((fittedHeight - cardBox.height) / 2) + "px");
+        body.style.setProperty("--command-deck-caption-shift", (cardBox.top + fittedHeight + captionGap - railBox.top) + "px");
+        body.setAttribute("data-command-deck-fit", "true");
+      } finally {
+        body.classList.remove("command-deck-measuring");
+      }
+    }
+
+    function scheduleFit() {
+      if (pending) { view.cancelAnimationFrame(pending); }
+      doc.body.removeAttribute("data-command-deck-fit");
+      doc.body.classList.add("command-deck-measuring");
+      // Let container units and perspective transforms return to their baseline
+      // before measuring; otherwise a fresh load can retain the previous fit.
+      pending = view.requestAnimationFrame(function () {
+        pending = view.requestAnimationFrame(updateFit);
+      });
+    }
+
+    view.addEventListener("resize", scheduleFit);
+    // Container-query dimensions settle after the flex/grid layout completes.
+    var observer = new view.ResizeObserver(scheduleFit);
+    observer.observe(viewport);
+    if (doc.fonts) { doc.fonts.ready.then(scheduleFit); }
+    scheduleFit();
+  }
+
   function normalizeEmbeddedView(frame, name) {
     try {
       var doc = frame.contentDocument;
@@ -242,7 +337,7 @@
       if (name === "deck") {
         var deckTitle = doc.getElementById("page-title");
         if (deckTitle && !deckTitle.dataset.commandCenterTitle) {
-          deckTitle.innerHTML = '<span class="command-deck-name">NeuroLab:</span><em>Project Deck</em>';
+          deckTitle.innerHTML = '<span class="command-deck-name">NeuroLab:</span> <em>Project Deck</em>';
           deckTitle.dataset.commandCenterTitle = "true";
         }
         var deckExperience = doc.querySelector(".deck-experience");
@@ -271,6 +366,7 @@
         style.textContent = EMBED_STYLES;
         doc.head.appendChild(style);
       }
+      if (name === "deck") { fitEmbeddedDeck(frame); }
     } catch (error) {
       // The local preview loads production publications cross-origin. Once
       // deployed, all views share an origin and receive this visual layer.
