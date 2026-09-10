@@ -205,6 +205,23 @@ body.frame-active {
   letter-spacing: 0.09em;
 }
 
+.header-social-link {
+  position: absolute;
+  top: 50%;
+  right: max(clamp(1rem, 3vw, 3rem), var(--safe-right));
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: var(--text-dim);
+}
+.header-social-link svg { width: 1.2rem; height: 1.2rem; fill: currentColor; }
+.header-social-link:hover { color: var(--accent-light); }
+.header-social-link:focus-visible { color: var(--text); outline: 2px solid var(--accent-light); outline-offset: 2px; }
+
 /* ── View toggle: its own floating pill beneath the masthead ──── */
 .master-nav {
   position: fixed;
@@ -514,6 +531,14 @@ body.frame-active {
   .master-head {
     padding-block: 0.15rem;
   }
+  .header-social-link {
+    top: 0;
+    right: max(0.25rem, var(--safe-right));
+    transform: none;
+    align-items: flex-start;
+    padding-top: 0.4rem;
+  }
+  .header-social-link svg { width: 1rem; height: 1rem; }
   .wordmark img { width: clamp(8.65rem, 38vw, 10.75rem); }
   .head-divider { width: clamp(9.5rem, 44vw, 12rem); margin: 0.25rem 0 0.25rem; }
   .master-head p { font-size: 0.56rem; letter-spacing: 0.055em; text-align: center; }
