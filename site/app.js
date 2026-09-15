@@ -20,6 +20,61 @@
   var loadingIndicator = document.getElementById("frame-loading");
   var mounted = {};
   var current = null;
+  var introVideo = document.getElementById("intro-video");
+  var introToggle = document.getElementById("intro-video-toggle");
+  var introWantsPlayback = true;
+  var backerRow = document.getElementById("backer-row");
+  var overviewBackers = document.getElementById("overview-backers");
+  var publicationBackers = document.getElementById("publication-backers");
+  var announcementBanner = document.querySelector(".announcement-banner");
+
+  function syncAnnouncementHeight() {
+    if (!announcementBanner) { return; }
+    document.documentElement.style.setProperty("--announcement-height", Math.ceil(announcementBanner.getBoundingClientRect().height) + "px");
+  }
+
+  // Keep the fixed navigation and publications below the banner as its text wraps.
+  if (announcementBanner) {
+    syncAnnouncementHeight();
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(syncAnnouncementHeight).observe(announcementBanner);
+    } else {
+      window.addEventListener("resize", syncAnnouncementHeight);
+    }
+  }
+
+  function updateIntroControl() {
+    if (!introVideo || !introToggle) { return; }
+    introToggle.textContent = introVideo.paused ? "Play" : "Pause";
+    introToggle.setAttribute("aria-label", introVideo.paused ? "Play intro video" : "Pause intro video");
+  }
+
+  function syncIntroPlayback() {
+    if (!introVideo) { return; }
+    if (current !== "overview" || document.hidden || !introWantsPlayback) {
+      introVideo.pause();
+      return;
+    }
+    // Autoplay can be declined by the browser; the Play button stays usable.
+    var playRequest = introVideo.play();
+    if (playRequest) { playRequest.catch(updateIntroControl); }
+  }
+
+  function toggleIntroPlayback() {
+    introWantsPlayback = introVideo.paused;
+    syncIntroPlayback();
+  }
+
+  if (introVideo && introToggle) {
+    introVideo.muted = true;
+    introVideo.controls = false;
+    introToggle.hidden = false;
+    introVideo.addEventListener("play", updateIntroControl);
+    introVideo.addEventListener("pause", updateIntroControl);
+    introVideo.addEventListener("click", toggleIntroPlayback);
+    introToggle.addEventListener("click", toggleIntroPlayback);
+    document.addEventListener("visibilitychange", syncIntroPlayback);
+  }
 
   var EMBED_STYLES = [
     ":root {",
@@ -434,7 +489,11 @@
     }
 
     document.body.classList.toggle("frame-active", Boolean(VIEWS[name]));
+    if (backerRow && overviewBackers && publicationBackers) {
+      (name === "overview" ? overviewBackers : publicationBackers).appendChild(backerRow);
+    }
     document.title = TITLES[name];
+    syncIntroPlayback();
 
     if (push) {
       var url = name === "overview" ? "./" : "?view=" + name;

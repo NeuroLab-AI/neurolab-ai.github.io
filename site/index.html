@@ -14,30 +14,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=backers-20260914">
+    <link rel="stylesheet" href="./styles.css?v=launch-20260915">
     <title>NeuroLab — Launch Command Center</title>
   </head>
   <body>
     <a class="skip-link" href="#stage">Skip to content</a>
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
-
-    <aside class="announcement-banner" aria-label="NeuroLab launch announcement and backers">
-      <a class="announcement-link" href="https://app.bio.xyz/agents/neurolab-ai" target="_blank" rel="noopener noreferrer">
-        <span>Bio.xyz Launchpad Sale for $NDT:</span>
-        <span class="announcement-date">Begins September 16, 2026</span>
-      </a>
-      <div class="backer-row" aria-label="NeuroLab backed by BeakerDAO and Bio.xyz">
-        <span class="backer-label">Backed by</span>
-        <a class="backer-link backer-beaker" href="https://www.beakerdao.xyz/" target="_blank" rel="noopener noreferrer" aria-label="BeakerDAO, opens in a new tab">
-          <span class="beaker-mark" aria-hidden="true"><img src="./assets/beakerdao-mark.jpg" alt="" width="400" height="400"></span>
-          <span>BeakerDAO</span>
-        </a>
-        <a class="backer-link backer-bio" href="https://www.bio.xyz/" target="_blank" rel="noopener noreferrer" aria-label="Bio.xyz, opens in a new tab">
-          <img src="./assets/bio-wordmark.svg" alt="Bio.xyz" width="122" height="36">
-        </a>
-      </div>
-    </aside>
 
     <header class="master-head" aria-label="NeuroLab publication header">
       <a class="wordmark" href="./" id="wordmark-home" aria-label="NeuroLab overview">
@@ -51,6 +34,10 @@
         </svg>
       </a>
     </header>
+
+    <aside class="announcement-banner" aria-label="NeuroLab launch announcement">
+      <p class="announcement-text">$NDT Launchpad Sale: Begins September 16, 2026</p>
+    </aside>
 
     <div class="master-nav" aria-label="NeuroLab master navigation">
       <div class="nav-row">
@@ -68,18 +55,37 @@
         <div class="overview-shell">
           <div class="overview-hero">
             <h1><span>NeuroLab:</span> <em>Launch Command Center</em></h1>
-            <p class="overview-lead">
-              <span>Every NeuroLab publication, in one place.</span>
-              <span>Navigate between the available resources and get ready for launch.</span>
-            </p>
+            <div class="intro-video" role="group" aria-label="NeuroLab app preview">
+              <video id="intro-video" width="1920" height="1080" poster="./assets/neurolab-intro-poster.jpg" muted loop playsinline controls preload="metadata" aria-label="A short preview of the NeuroLab app welcome screen">
+                <source src="./assets/neurolab-intro.mp4?v=1080p" type="video/mp4">
+                <a href="./assets/neurolab-intro.mp4">Watch the NeuroLab app preview</a>.
+              </video>
+              <button class="intro-video-toggle" id="intro-video-toggle" type="button" aria-controls="intro-video" aria-label="Play intro video" hidden>Play</button>
+            </div>
+            <div id="overview-backers">
+              <div class="backer-row" id="backer-row" aria-label="NeuroLab backed by BeakerDAO and Bio.xyz">
+                <span class="backer-label">Backed by</span>
+                <a class="backer-link backer-beaker" href="https://www.beakerdao.xyz/" target="_blank" rel="noopener noreferrer" aria-label="BeakerDAO, opens in a new tab">
+                  <span class="beaker-mark" aria-hidden="true"><img src="./assets/beakerdao-mark.jpg" alt="" width="400" height="400"></span>
+                  <span>BeakerDAO</span>
+                </a>
+                <a class="backer-link backer-bio" href="https://www.bio.xyz/" target="_blank" rel="noopener noreferrer" aria-label="Bio.xyz, opens in a new tab">
+                  <img src="./assets/bio-wordmark.svg" alt="Bio.xyz" width="122" height="36">
+                </a>
+              </div>
+            </div>
+            <div class="overview-action">
+              <a class="sale-cta" href="https://app.bio.xyz/agents/neurolab-ai" target="_blank" rel="noopener noreferrer">
+                Join the sale on Bio.xyz <span aria-hidden="true">&nearr;</span>
+              </a>
+            </div>
           </div>
           <div class="pub-grid" role="list">
             <article class="pub-card" role="listitem">
               <p class="pub-kicker"><span aria-hidden="true">//</span> development_sequence</p>
               <h2>The Roadmap</h2>
               <p>
-                Calendar targets and technical milestones across the NeuroLab research stack —
-                initiatives, dependencies, validation gates, and claim boundaries.
+                Explore upcoming releases, technical milestones, and validation gates.
               </p>
               <div class="pub-actions">
                 <button type="button" class="pub-open" data-view="roadmap">Open Roadmap <span aria-hidden="true">&rarr;</span></button>
@@ -89,8 +95,7 @@
               <p class="pub-kicker"><span aria-hidden="true">//</span> project_presentation</p>
               <h2>The Project Deck</h2>
               <p>
-                The NeuroLab project presented slide by slide — platform, product previews,
-                tokenomics, and the road to release.
+                Explore the platform, product previews, tokenomics, and launch plan.
               </p>
               <div class="pub-actions">
                 <button type="button" class="pub-open" data-view="deck">Open Deck <span aria-hidden="true">&rarr;</span></button>
@@ -100,8 +105,7 @@
               <p class="pub-kicker"><span aria-hidden="true">//</span> scientific_foundation</p>
               <h2>The Whitepaper</h2>
               <p>
-                The scientific whitepaper: the evidence architecture, knowledge systems, and
-                validation approach behind the NeuroLab platform.
+                Read the evidence architecture, research methods, and validation approach.
               </p>
               <div class="pub-actions">
                 <button type="button" class="pub-open" data-view="whitepaper">Open Whitepaper <span aria-hidden="true">&rarr;</span></button>
@@ -123,6 +127,8 @@
       </p>
     </main>
 
-    <script src="./app.js" defer></script>
+    <div class="publication-backers" id="publication-backers"></div>
+
+    <script src="./app.js?v=launch-20260915" defer></script>
   </body>
 </html>
