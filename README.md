@@ -1,14 +1,14 @@
 # NeuroLab Command Center
 
 The master entry point for NeuroLab's public publications, served at
-**https://neurolab-ai.github.io/**.
+**https://launch.neurolabai.io/**.
 
 A single-page shell with a persistent navigation bar that switches between:
 
 - **Overview** — publication cards and direct links (default view)
-- **Roadmap** — https://neurolab-ai.github.io/roadmap/
-- **Project Deck** — https://neurolab-ai.github.io/roadmap/deck/
-- **Whitepaper** — https://neurolab-ai.github.io/whitepaper/
+- **Roadmap** — https://launch.neurolabai.io/roadmap/
+- **Project Deck** — https://launch.neurolabai.io/roadmap/deck/
+- **Whitepaper** — https://launch.neurolabai.io/whitepaper/
 
 Views load lazily into same-origin embedded frames (each publication passes
 `?embed=1` to suppress its own masthead) and stay mounted once opened, so

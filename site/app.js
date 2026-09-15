@@ -3,9 +3,9 @@
 
   var VIEWS = {
     overview: null,
-    roadmap: "https://neurolab-ai.github.io/roadmap/?embed=1",
-    deck: "https://neurolab-ai.github.io/roadmap/deck/?embed=1",
-    whitepaper: "https://neurolab-ai.github.io/whitepaper/?embed=1"
+    roadmap: "/roadmap/?embed=1",
+    deck: "/roadmap/deck/?embed=1",
+    whitepaper: "/whitepaper/?embed=1"
   };
 
   var TITLES = {
