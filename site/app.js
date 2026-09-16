@@ -24,22 +24,26 @@
   var introToggle = document.getElementById("intro-video-toggle");
   var introWantsPlayback = true;
   var backerRow = document.getElementById("backer-row");
-  var overviewBackers = document.getElementById("overview-backers");
-  var publicationBackers = document.getElementById("publication-backers");
   var announcementBanner = document.querySelector(".announcement-banner");
 
-  function syncAnnouncementHeight() {
-    if (!announcementBanner) { return; }
-    document.documentElement.style.setProperty("--announcement-height", Math.ceil(announcementBanner.getBoundingClientRect().height) + "px");
+  function syncHeaderHeights() {
+    if (announcementBanner) {
+      document.documentElement.style.setProperty("--announcement-height", Math.ceil(announcementBanner.getBoundingClientRect().height) + "px");
+    }
+    if (backerRow) {
+      document.documentElement.style.setProperty("--backers-height", Math.ceil(backerRow.getBoundingClientRect().height) + "px");
+    }
   }
 
-  // Keep the fixed navigation and publications below the banner as its text wraps.
-  if (announcementBanner) {
-    syncAnnouncementHeight();
+  // Keep navigation and publications below both shared strips as their content resizes.
+  if (announcementBanner || backerRow) {
+    syncHeaderHeights();
     if ("ResizeObserver" in window) {
-      new ResizeObserver(syncAnnouncementHeight).observe(announcementBanner);
+      var headerObserver = new ResizeObserver(syncHeaderHeights);
+      if (announcementBanner) { headerObserver.observe(announcementBanner); }
+      if (backerRow) { headerObserver.observe(backerRow); }
     } else {
-      window.addEventListener("resize", syncAnnouncementHeight);
+      window.addEventListener("resize", syncHeaderHeights);
     }
   }
 
@@ -489,9 +493,6 @@
     }
 
     document.body.classList.toggle("frame-active", Boolean(VIEWS[name]));
-    if (backerRow && overviewBackers && publicationBackers) {
-      (name === "overview" ? overviewBackers : publicationBackers).appendChild(backerRow);
-    }
     document.title = TITLES[name];
     syncIntroPlayback();
 
